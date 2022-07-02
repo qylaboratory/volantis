@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.6.1](https://github.com/volantis-x/hexo-theme-volantis/compare/v5.6.0...v5.6.1) (2022-07-02)
+
+
+### Bug Fixes
+
+* **artalk:** imageUploader ([#782](https://github.com/volantis-x/hexo-theme-volantis/issues/782)) ([c573d0c](https://github.com/volantis-x/hexo-theme-volantis/commit/c573d0c59b3dda882d88475ce44635647c64e4eb))
+
 ## [5.6.0](https://github.com/volantis-x/hexo-theme-volantis/compare/v5.5.0...v5.6.0) (2022-06-30)
 
 
