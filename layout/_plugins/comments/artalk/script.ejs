@@ -1,5 +1,5 @@
 <script>
-  volantis.layoutHelper("comments",`<div id="artalk_container"><i class="fa-solid fa-cog fa-spin fa-fw fa-2x"></i></div>`);
+  volantis.layoutHelper("comments",`<div id="artalk_container"><i class="fa-light fa-cog fa-spin fa-fw fa-2x"></i></div>`);
   function load_artalk() {
     if(!document.querySelectorAll("#artalk_container")[0])return;
     volantis.css("<%- theme.comments.artalk.css %>");
@@ -14,7 +14,7 @@
       path = '<%= theme.comments.artalk.path %>' || decodeURI(window.location.pathname);
     }
     if(!'<%= config.permalink %>'.includes('/index.html')) {
-      path = path.replaceAll('/index.html', '/').replaceAll('.html', '')
+      path = path.replaceAll('/index.html', '/')
     }
 
     volantis.artalk = new Artalk(Object.assign(<%- JSON.stringify(theme.comments.artalk) %>, {
@@ -25,29 +25,11 @@
       useBackendConf: true,
       site: '<%= config.title %>',
       darkMode: volantis.dark.mode === "dark",
-      pvEl: '#artalk_visitors',
-
-      <% if(!!theme.comments.artalk.imageUploader?.api){ %>
-      imgUploader: function(file) {
-        let headers = new Headers();
-        headers.set('Accept', 'application/json');
-        <% if(!!theme.comments.artalk.imageUploader?.token) { %>
-          headers.set('Authorization', '<%= theme.comments.artalk.imageUploader?.token %>')
-        <% } %>
-        let formData = new FormData();
-        formData.append('file', file);
-        return fetch('<%= theme.comments.artalk.imageUploader?.api %>',{
-          method: 'POST',
-          body: formData,
-          headers: headers
-          }).then((resp) => resp.json())
-            .then((resp) => resp.<%= theme.comments.artalk.imageUploader?.resp %>)
-      },
-      <% } %>
+      pvEl: '#artalk_visitors'
     }));
 
-    Artalk.use(ctx => {
-      ctx.on('list-loaded', () => {
+    volantis.artalk.then(ctx => {
+      ctx.on('comments-loaded', () => {
         if (typeof VolantisFancyBox === "undefined"){
           const checkFancyBox = setInterval(() => {
             if(typeof VolantisFancyBox === "undefined") return;

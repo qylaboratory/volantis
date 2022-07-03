@@ -9,7 +9,7 @@
   var banUrl = theme.plugins.pjax.banUrl || [];
 %>
 
-<%- js(theme.plugins.pjax.js) %>
+<script src="<%- theme.cdn.map.js.pjax %>"></script>
 <% if (theme.plugins.pjax.animation){ %>
 <%- partial('animate') %>
 <% } %>
@@ -27,7 +27,7 @@
           "#pjax-header-nav-list",
           ".pjax",
           "pjax", // <pjax></pjax> 标签
-          "script[data-pjax], .pjax-reload script" // script标签添加data-pjax 或 script标签外层添加.pjax-reload 的script代码段重载
+          "script[data-pjax], .pjax-reload script", // script标签添加data-pjax 或 script标签外层添加.pjax-reload 的script代码段重载
         ],
         cacheBust: <%= theme.plugins.pjax.cacheBust %>,   // url 地址追加时间戳，用以避免浏览器缓存
         timeout: <%= theme.plugins.pjax.timeout %>,
@@ -37,7 +37,6 @@
 
     document.addEventListener('pjax:send', function (e) {
       //window.stop(); // 相当于点击了浏览器的停止按钮
-
       try {
         var currentUrl = window.location.pathname;
         var targetUrl = e.triggerElement.href;
