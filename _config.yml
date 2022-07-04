@@ -202,7 +202,7 @@ article:
         icon: fa-solid fa-bookmark
         max_count: 5
         # 设为空则不使用文章头图
-        placeholder_img: https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture
+        # placeholder_img: https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture
       # ----------------
       # 版权声明组件 (for layout: post)
       copyright:
