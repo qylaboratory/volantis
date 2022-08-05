@@ -1,5 +1,4 @@
 ############################### Volantis ###############################
-## 这是qystudio的魔改版借鉴了很多inkss大佬的样式
 info:
   theme_name: Volantis # This is theme's name.
   theme_docs: https://volantis.js.org/ # This is theme's URL.
@@ -47,7 +46,7 @@ cdn:
   # CDN 前缀，为空使用默认值，链接最后不加 "/",
   # 例如： https://cdn.jsdelivr.net/gh/volantis-x/volantis-x.github.io@gh-page 填写最后编译生成的源码CDN地址前缀，此路径下应该含有/js与/css目录,
   # 该配置默认值是："https://unpkg.com/hexo-theme-volantis@"+ theme.info.theme_version +"/source"
-  prefix: #https://npm.elemecdn.com/hexo-theme-volantis/source
+  prefix: #https://unpkg.com/hexo-theme-volantis/source
   # 以下配置可以覆盖 cdn.prefix,配置项的值可以为空，但是要使用CDN必须依据路径填写配置项的键
   set:
     js:
@@ -65,13 +64,13 @@ volantis_static_cdn: https://unpkg.com/volantis-static@0.0.1654736714924/
 # 全局页面字符串替换  A => B (可用于临时修改错字等)
 replace:
   - https://cdn.jsdelivr.net/npm/ => https://unpkg.com/
-  - https://cdn.jsdelivr.net/gh/ => https://fastly.jsdelivr.net/gh/
-#  - https://unpkg.com/ => https://npm.elemecdn.com/
+  - https://cdn.jsdelivr.net/gh/ => https://gcore.jsdelivr.net/gh/
+
 
 # dns-prefetch preconnect x-dns-prefetch-control
 dns_prefetch:
   - https://unpkg.com
-  # - https://npm.elemecdn.com
+
 
 # 平滑滚动效果
 scroll_smooth: true
@@ -114,7 +113,7 @@ cover:
     home: true
     archive: true
     others: false # can be written in front-matter 'cover: true'
-  # background: https://fastly.jsdelivr.net/gh/MHG-LAB/cron@gh-pages/bing/bing.jpg
+  background: https://gcore.jsdelivr.net/gh/MHG-LAB/cron@gh-pages/bing/bing.jpg
   # background: https://bing.ioliu.cn/v1/rand?w=1920&h=1200
   logo: # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-Cover@3x.png
   title: 'Volantis'
@@ -202,7 +201,7 @@ article:
         icon: fa-solid fa-bookmark
         max_count: 5
         # 设为空则不使用文章头图
-        # placeholder_img: https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture
+        placeholder_img: https://gcore.jsdelivr.net/gh/MHG-LAB/cron@gh-pages/bing/bing.jpg
       # ----------------
       # 版权声明组件 (for layout: post)
       copyright:
@@ -476,7 +475,7 @@ comments:
   # Discuss
   # https://discuss.js.org
   discuss:
-    js: https://cdn.jsdelivr.net/npm/discuss/dist/Discuss.js # 建议锁定版本
+    js: https://cdn.jsdelivr.net/npm/discuss/dist/discuss.js # 建议锁定版本
     serverURLs: # Discuss server address url
     # https://discuss.js.org/Quick-Start.html#path
 
@@ -487,7 +486,7 @@ comments:
 sidebar:
   position: right # left right
   # 主页、分类、归档等独立页面
-  for_page: [blogger, blogerpro, category, tagcloud, donate]
+  for_page: [blogger, category, tagcloud, donate]
   # layout: docs/post 这类文章页面
   for_post: [toc]
   # 侧边栏组件库
@@ -496,7 +495,7 @@ sidebar:
     # blogger info widget
     blogger:
       class: blogger
-      display: [mobile] # [desktop, mobile]
+      display: [desktop, mobile] # [desktop, mobile]
       avatar: volantis-static/media/org.volantis/blog/Logo-NavBar@3x.png # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png
       shape: rectangle # circle, rectangle
       url: /about/
@@ -512,13 +511,6 @@ sidebar:
           url: https://github.com/volantis-x/
         - icon: fa-solid fa-headphones-alt
           url: /
-    # ---------------------------------------
-    # blogger info widget
-    bloggerpro:
-      class: bloggerpro
-      display: [desktop] # [desktop, mobile]
-      jinrishici: true # Poetry Today. You can set a string, and it will be displayed when loading fails.
-    ## 这个功能需要你fork后修改部分信息
     # ---------------------------------------
     # toc widget (valid only in articles)
     toc:
