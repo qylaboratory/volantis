@@ -1,12 +1,10 @@
-<head>
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/#<%- theme.info.theme_version %>'>
   <%- meta_generator() %>
+  <meta name="Volantis" content="<%- theme.info.theme_version %>">
   <meta charset="utf-8">
-  
   <!-- SEO相关 -->
   <%- generate_seo(theme, page) %>
   <%- autoCanonical(config, page) %>
-  
-  
   <!-- 渲染优化 -->
   <%_ if (theme.dns_prefetch && theme.dns_prefetch.length){ _%>
     <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -62,35 +60,14 @@
   </style>
   <link rel="stylesheet" href="<%- theme.cdn.map.css.style %>" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="<%- theme.cdn.map.css.style %>"></noscript>
-  <script>
-    <%_ if (theme.plugins.darkmode.enable) { _%>
+  <%_ if (theme.plugins.darkmode.enable) { _%>
+    <script>
       let userColorScheme=localStorage.getItem("color-scheme")
       if(userColorScheme){
         document.documentElement.setAttribute("color-scheme", userColorScheme);
       }
-    <%_ } _%>
-    document.addEventListener("error", function(e) {
-      const elem = e.target;
-      const parentElem = e.target.parentElement;
-      const parentElemClass = parentElem.classList.toString();
-      const pParentElemClass = parentElem.parentElement.classList.toString();
-      if (elem.tagName.toLowerCase() !== 'img') {
-          return;
-      }
-      elem.classList.add('fix-cursor-default', 'error');
-      if(parentElemClass === 'fancybox' && pParentElemClass === 'fancybox') {
-        parentElem.parentElement.classList.add('hideFancybox');
-        parentElem.parentElement.classList.remove('fancybox');
-        parentElem.classList.remove('fancybox');
-      } else if(parentElemClass === 'img-bg' && pParentElemClass === 'img-wrap') {
-        parentElem.parentElement.classList.add('hideFancybox');
-      } else if(parentElemClass === 'author') {
-        parentElem.parentElement.classList.add('fix-author-imgError');
-      } else if(parentElemClass.indexOf('tk-avatar') != -1 ) {
-        parentElem.parentElement.classList.add('fix-avatar-imgError');
-      }
-    }, true);
-  </script>
+    </script>
+  <%_ } _%>
   <%- partial('../_plugins/end-of-support/script') %>
   <%- partial('scripts/global') %>
   <!-- import head_end begin -->
