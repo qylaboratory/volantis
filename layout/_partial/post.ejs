@@ -24,6 +24,11 @@
   if (theme.article.preview.readmore == 'always' || theme.article.preview.auto_excerpt || ((post.readmore != false) && (post.excerpt || post.description || post.link))) {
     showReadmore = true;
   }
+  if (post.hideTitle && post.hideTitle === true) {
+    showTitle = false;
+  }
+
+  let articlTitle = (post.title || post.seo_title) ? (post.title || post.seo_title) : date(post.date, theme.article.body.meta_library.date.format);
   %>
   <% if (showPin == true) { %>
     <div class='pin'>
@@ -32,7 +37,7 @@
   <% } %>
   <% if (post.headimg) { %>
     <div class='headimg-div'>
-      <a class='headimg-a' href="<%- url_for(post.link || post.path) %>">
+      <a class='headimg-a' title='查看文章：《<%= articlTitle %>》' href="<%- url_for(post.link || post.path) %>">
         <img itemprop="image" class='headimg' alt="<%- post.title %>" src='<%- post.headimg %>'/>
       </a>
     </div>
@@ -49,13 +54,13 @@
     }
     %>
     <h2 class="article-title" <%- pinTitle ? 'pin' : '' %> itemprop="name headline">
-      <a href="<%- url_for(post.link || post.path) %>"  itemprop="url">
-        <%- (post.title || post.seo_title) ? (post.title || post.seo_title) : date(post.date, theme.article.body.meta_library.date.format) %>
+      <a href="<%- url_for(post.link || post.path) %>" title='查看文章：《<%= articlTitle %>》'  itemprop="url">
+        <%- articlTitle %>
       </a>
     </h2>
   <% } else { %>
     <span hidden itemprop="name headline">
-      <%- (post.title || post.seo_title) ? (post.title || post.seo_title) : date(post.date, theme.article.body.meta_library.date.format) %>
+      <%- articlTitle %>
     </span>
   <% } %>
   <div class='md article-desc' itemprop="articleBody">
@@ -103,15 +108,27 @@
             </span>
           <% } %>
         <% } %>
+        <% if (post.tags && post.tags.length > 0) { %>
+          <span class="dot"></span>
+          <%- list_categories(post.tags, {
+              show_count: false,
+              separator: '<span class="sep"></span>',
+              style: 'none'
+              }) %>
+          <% for(dog of post.tags.toArray()){ %>
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="<%- url_for(dog.path) %>" itemprop="url"><span itemprop="name"><%- dog.name %></span></a>
+            </span>
+          <% } %>
+        <% } %>
       </div>
-      <% if (showReadmore) { %>
+      <% if (showReadmore && false) { %>
         <div>
-          <a class='readmore' href='<%- url_for(post.link || post.path) %>' itemprop="url">
+          <a class='readmore' href='<%- url_for(post.link || post.path) %>'>
             <%- post.link ? __('post.readoriginal') : __('post.readmore') %>
           </a>
         </div>
       <% } %>
     </div>
   <% } %>
-
 </div>

@@ -467,7 +467,6 @@ const RightMenu = (() => {
     DOMController.remove('#l_side');
     DOMController.remove('#comments');
     DOMController.remove('#s-top');
-    DOMController.remove('#BKG');
     DOMController.remove('#rightmenu-wrapper');
     DOMController.remove('.nav-tabs');
     DOMController.remove('.parallax-mirror');
@@ -535,6 +534,7 @@ const RightMenu = (() => {
     } else {
       document.querySelector('#l_body').removeEventListener('click', fn.readingModel);
       document.querySelector('#post').removeEventListener('click', fn.readingModel);
+      document.querySelector('.prev-next').style.display = 'flex'; // 单独修改
     }
   }
 

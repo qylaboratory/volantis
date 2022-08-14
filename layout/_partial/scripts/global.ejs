@@ -26,23 +26,17 @@
     plugins: {
       message: <%- JSON.stringify(theme.plugins.message) %>,
       fancybox: <%- JSON.stringify(theme.plugins.fancybox) %>,
-      <% if(theme.plugins.aplayer.enable) { %>
       aplayer: {
         id: <%- JSON.stringify(theme.plugins.aplayer.id) %>,
         enable:<%- JSON.stringify(theme.plugins.aplayer.enable) %>
       },
-      <% } %>
-      <% if(theme.rightmenu.enable) { %>
       rightmenu: {
         faicon: <%- JSON.stringify(theme.rightmenu.faicon) %>,
         layout: <%- JSON.stringify(theme.rightmenu.layout) %>,
         music_alwaysShow: <%- JSON.stringify(theme.rightmenu.music.alwaysShow) %>,
         customPicUrl: <%- JSON.stringify(theme.rightmenu.customPicUrl) %>
       },
-      <% } %>
-      <% if(theme.rightmenus.enable) { %>
       rightmenus: <%- JSON.stringify(theme.rightmenus) %>
-      <% } %>
     }
   }
 
@@ -234,7 +228,7 @@
   volantis.js = (src, cb) => {
     return new Promise(resolve => {
       setTimeout(function () {
-        var HEAD = document.getElementsByTagName("head")[0] || document.documentElement;
+        var HEAD = document.getElementsByTagName("body")[0] || document.documentElement;
         var script = document.createElement("script");
         script.setAttribute("type", "text/javascript");
         if (cb) {
@@ -259,7 +253,7 @@
         } else {
           script.onload = resolve
         }
-        script.setAttribute("src", src);
+        script.setAttribute("src", src + "<%- theme.cdnCtrl.cdn_version %>");
         HEAD.appendChild(script);
       });
     });
@@ -269,7 +263,7 @@
       setTimeout(function () {
         var link = document.createElement('link');
         link.rel = "stylesheet";
-        link.href = src;
+        link.href = src + "<%- theme.cdnCtrl.cdn_version %>";
         link.onload = resolve;
         document.getElementsByTagName("head")[0].appendChild(link);
       });
@@ -280,7 +274,7 @@
   volantis.import = {
     jQuery: () => {
       if (typeof jQuery == "undefined") {
-        return volantis.js("<%- theme.plugins.jquery %>")
+        return volantis.js("<%- theme.plugins.jquery %>") 
       } else {
         return new Promise(resolve => {
           resolve()

@@ -30,8 +30,8 @@ if (post.bottom_meta == false) {
         <img itemprop="image" class='thumbnail' src='<%- post.thumbnail %>'>
       </a>
     <% } %>
-    <% if (post.title) { %>
-      <h1 class="title" itemprop="name headline">
+    <% if (post.title && post.seo_title == undefined) { %>
+      <h1 class="title allow-select" itemprop="name headline">
         <%- post.title %>
       </h1>
       <div class='new-meta-box'>

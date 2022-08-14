@@ -12,6 +12,7 @@
 </script>
 
 <script>
+  top.location!=self.location&&(top.location=self.location);
   <% if (theme.plugins.fontawesome) { %>
   volantis.css("<%- theme.plugins.fontawesome %>");
   <% } %>
@@ -29,7 +30,7 @@
 <% } %>
 
 <!-- internal -->
-<%- js(theme.cdn.map.js.app) %>
+<script src="<%- theme.cdn.map.js.app %>"></script>
 
 <% if (theme.rightmenu.enable) { %>
   <%- partial('../../_plugins/rightmenu/layout') %>
@@ -138,9 +139,12 @@
 
 <%- partial('content-visibility-scroll-fix') %>
 
-<%- partial('../../_plugins/slow-network/script') %>
-
 <% if (theme.structured_data && theme.structured_data.enable) { %>
   <%- structured_data() %>
 <% } %>
 
+<%- partial('../szyink') %>
+<% if (theme.InconfontFlag) { %>
+
+  <script src="<%- theme.cdn.map.js.iconfontInkss %>"></script>
+<% } %>

@@ -162,7 +162,6 @@
       </div>
     <% } %>
   <% } %>
-
   <% if (post.prev || post.next) { %>
     <div class="prev-next">
       <% if (post.prev) { %>
@@ -183,8 +182,6 @@
   <%- volantis_inject('postEnd') %>
   <!-- Custom Files postEnd end-->
 </article>
-
 <% if (page.comments == undefined || page.comments != false) { %>
   <%- partial('../_plugins/comments/index') %>
 <% } %>
-
